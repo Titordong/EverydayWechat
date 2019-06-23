@@ -3,7 +3,7 @@
 #  http://einverne.github.io/post/2015/08/yaml.html
 
 # 定时时间、
-alarm_timed: '9:30'
+alarm_timed: '18:12'
 
 # 格言渠道
 # 1 : ONE●一个
@@ -13,7 +13,7 @@ dictum_channel: 2
 girlfriend_infos:
   -
     #女友微信昵称/备注/账号均可
-    wechat_name: 'test'
+    wechat_name: '逍遥'
     #女友所在北京
     city_name: '北京'
     # 从那天开始勾搭的（可空）
