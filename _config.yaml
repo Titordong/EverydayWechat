@@ -3,7 +3,7 @@
 #  http://einverne.github.io/post/2015/08/yaml.html
 
 # 定时时间、
-alarm_timed: '18:12'
+alarm_timed: '08:00'
 
 # 格言渠道
 # 1 : ONE●一个
@@ -15,11 +15,21 @@ girlfriend_infos:
     #女友微信昵称/备注/账号均可
     wechat_name: '逍遥'
     #女友所在北京
-    city_name: '北京'
+    city_name: '武汉'
     # 从那天开始勾搭的（可空）
     start_date: '2017-09-10'
     # 短句的最后留言（可空）
     sweet_words: '来自最爱你的我。'
+
+  -
+    #女友微信昵称/备注/账号均可
+    wechat_name: '冷小寒'
+    #女友所在北京
+    city_name: '武汉'
+    # 从那天开始勾搭的（可空）
+    start_date: '2019-04-12'
+    # 短句的最后留言（可空）
+    sweet_words: '来自技术宅二狗。'
 
   #如果有你多个人需要发送，则参照这个样式，复制即可
   #-
