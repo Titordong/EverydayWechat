@@ -1,4 +1,4 @@
-import requests
+﻿import requests
 from datetime import datetime
 from bs4 import BeautifulSoup
 import itchat
@@ -27,7 +27,7 @@ class gfweather:
         :return:
         '''
         with open('_config.yaml', 'r', encoding='utf-8') as f:
-            config = yaml.load(f)
+            config = yaml.load(f,Loader=yaml.FullLoader)
 
         alarm_timed = config.get('alarm_timed').strip()
         init_msg = f"每天定时发送时间：{alarm_timed}\n"
