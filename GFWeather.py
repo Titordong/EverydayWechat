@@ -30,7 +30,7 @@ class gfweather:
             config = yaml.load(f,Loader=yaml.FullLoader)
 
         alarm_timed = config.get('alarm_timed').strip()
-        init_msg = "每天定时发送时间：{alarm_timed}\n"
+        init_msg = f"每天定时发送时间：{alarm_timed}\n"
 
         dictum_channel = config.get('dictum_channel', -1)
         init_msg += f"格言获取渠道：{self.dictum_channel_name.get(dictum_channel,'无')}\n"
