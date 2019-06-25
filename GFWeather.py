@@ -236,7 +236,7 @@ class gfweather:
         repley_list = {"冷小寒","逍遥"}
         for repley_p in repley_list:
             # print(msg.get('NickName'))
-            if repley_p==msg['User']['NickName'] or repley_p==msg['User']['NickName']:
+            if repley_p==msg['User']['NickName'] or repley_p==msg['User']['RemarkName']:
                 flag=1
         if flag==-1:
             print("不在自动回复范围内")
