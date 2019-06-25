@@ -17,9 +17,8 @@ class gfweather:
                       "Chrome/67.0.3396.87 Safari/537.36",
     }
     dictum_channel_name = {1: 'ONE●一个', 2: '词霸（每日英语）'}
-
     def __init__(self):
-        self.girlfriend_list, self.repley_list, self.alarm_hour, self.alarm_minute, self.dictum_channel = self.get_init_data()
+        self.girlfriend_list, self.alarm_hour, self.alarm_minute, self.dictum_channel = self.get_init_data()
 
     def get_init_data(self):
         '''
@@ -38,8 +37,8 @@ class gfweather:
         girlfriend_list = []
         girlfriend_infos = config.get('girlfriend_infos')
 
-        repley_list = []
-        repley_list = config.get('repley_infos')
+        # repley_list = []
+        # repley_infos = config.get('repley_infos')
         
         for girlfriend in girlfriend_infos:
             girlfriend.get('wechat_name').strip()
@@ -60,7 +59,7 @@ class gfweather:
         print(init_msg)
 
         hour, minute = [int(x) for x in alarm_timed.split(':')]
-        return girlfriend_list, hour, minute, dictum_channel
+        return girlfriend_list,hour, minute, dictum_channel
 
     def itchatRun(self):
         itchat.run();
@@ -233,10 +232,14 @@ class gfweather:
     def text_reply(msg):
         print(msg.items())
         flag=-1
+        
+        repley_list = {"冷小寒","逍遥"}
         for repley_p in repley_list:
-            if repley_p['name']==msg.get('NickName') or repley_p['name']==msg.get('RemarkName'):
+            # print(msg.get('NickName'))
+            if repley_p==msg['User']['NickName'] or repley_p==msg['User']['NickName']:
                 flag=1
         if flag==-1:
+            print("不在自动回复范围内")
             return
         try:
             # return msg.get('Content','hello')
