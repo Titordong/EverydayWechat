@@ -38,5 +38,6 @@ girlfriend_infos:
     #start_date: '2018-11-11'
     #sweet_words: '来自你俊美的老公。'
 
-
+repley_infos:
+  - name: '冷小寒'
 

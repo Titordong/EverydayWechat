@@ -19,7 +19,7 @@ class gfweather:
     dictum_channel_name = {1: 'ONE●一个', 2: '词霸（每日英语）'}
 
     def __init__(self):
-        self.girlfriend_list, self.alarm_hour, self.alarm_minute, self.dictum_channel = self.get_init_data()
+        self.girlfriend_list, self.repley_list, self.alarm_hour, self.alarm_minute, self.dictum_channel = self.get_init_data()
 
     def get_init_data(self):
         '''
@@ -37,6 +37,10 @@ class gfweather:
 
         girlfriend_list = []
         girlfriend_infos = config.get('girlfriend_infos')
+
+        repley_list = []
+        repley_list = config.get('repley_infos')
+        
         for girlfriend in girlfriend_infos:
             girlfriend.get('wechat_name').strip()
             # 根据城市名称获取城市编号，用于查询天气。查看支持的城市为：http://cdn.sojson.com/_city.json
@@ -227,8 +231,14 @@ class gfweather:
 
     @itchat.msg_register([TEXT, MAP, CARD, NOTE, SHARING])
     def text_reply(msg):
+        print(msg.items())
+        flag=-1
+        for repley_p in repley_list:
+            if repley_p['name']==msg.get('NickName') or repley_p['name']==msg.get('RemarkName'):
+                flag=1
+        if flag==-1:
+            return
         try:
-            print(msg.items())
             # return msg.get('Content','hello')
             return gfweather.getResponse(msg.get('Content', 'hello'))
         except Exception as e:
