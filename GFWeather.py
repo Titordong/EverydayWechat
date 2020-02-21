@@ -233,7 +233,7 @@ class gfweather:
         print(msg.items())
         flag=-1
         
-        repley_list = {"冷小寒","逍遥"}
+        repley_list = {}
         for repley_p in repley_list:
             # print(msg.get('NickName'))
             if repley_p==msg['User']['NickName'] or repley_p==msg['User']['RemarkName']:
@@ -248,7 +248,7 @@ class gfweather:
             print(str(e))
             return "我还不知道哦"
 
-    def get_weather_info(self, dictum_msg='', city_code='101030100', start_date='2018-01-01', sweet_words='来自最爱你的我'):
+    def get_weather_info(self, dictum_msg='', city_code='101030100', start_date='2018-01-01', sweet_words='越努力越幸运'):
         '''
         获取天气信息。网址：https://www.sojson.com/blog/305.html
         :param dictum_msg: 发送给朋友的信息
@@ -260,6 +260,7 @@ class gfweather:
         print('获取天气信息..')
         weather_url = f'http://t.weather.itboy.net/api/weather/city/{city_code}'
         resp = requests.get(url=weather_url)
+        print(resp.status_code)
         if resp.status_code == 200 and self.isJson(resp) and resp.json().get('status') == 200:
             weatherJson = resp.json()
             # 今日天气
@@ -288,19 +289,27 @@ class gfweather:
             if start_date:
                 start_datetime = datetime.strptime(start_date, "%Y-%m-%d")
                 day_delta = (datetime.now() - start_datetime).days
-                delta_msg = f'嗨，这是我们认识的第 {day_delta} 天。\n'
+                delta_msg = f'嗨，这是开始背单词打卡的第 {day_delta} 天。\n'
             else:
                 delta_msg = ''
 
             today_msg = f'{today_time}\n{delta_msg}{notice}。\n{temperature}\n{wind}\n{aqi}\n{dictum_msg}{sweet_words if sweet_words else ""}\n'
             return today_msg
-
+        if start_date:
+            start_datetime = datetime.strptime(start_date, "%Y-%m-%d")
+            day_delta = (datetime.now() - start_datetime).days
+            delta_msg = f'嗨，这是开始背单词打卡的第 {day_delta} 天。\n'
+        else:
+            delta_msg = ''
+        today_msg = f'{delta_msg}\n{dictum_msg}\n{sweet_words if sweet_words else ""}\n'
+        return today_msg
 
 if __name__ == '__main__':
 
     # 只查看获取数据，
     gfweather().start_today_info(True)
-
+    # str=gfweather().get_weather_info('', city_code='101030100', start_date='2018-01-01', sweet_words='越努力越幸运')
+    print(str)
     # 直接运行
     # gfweather().run()
 
